@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shallowu.github.io/2024/01e069a11a.html</loc>
+    
+    <lastmod>2024-01-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shallowu.github.io/2024/0188e3d28e.html</loc>
     
     <lastmod>2024-01-16</lastmod>
@@ -76,7 +85,7 @@
 
   <url>
     <loc>https://shallowu.github.io/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -84,14 +93,14 @@
   
   <url>
     <loc>https://shallowu.github.io/tags/lyrics/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shallowu.github.io/tags/reading-feelings/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -100,7 +109,14 @@
   
   <url>
     <loc>https://shallowu.github.io/categories/share-emotion/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shallowu.github.io/categories/deeplearning/</loc>
+    <lastmod>2024-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
