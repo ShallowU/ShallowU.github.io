@@ -9,6 +9,7 @@ https://shallowu.github.io/2023/0747770.html
 https://shallowu.github.io/about/index.html
 https://shallowu.github.io/
 https://shallowu.github.io/tags/lyrics/
+https://shallowu.github.io/tags/cs231n/
 https://shallowu.github.io/tags/reading-feelings/
 https://shallowu.github.io/categories/share-emotion/
 https://shallowu.github.io/categories/deeplearning/
