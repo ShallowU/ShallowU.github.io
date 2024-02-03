@@ -19,4 +19,3 @@ https://shallowu.github.io/tags/reading-feelings/
 https://shallowu.github.io/categories/share-emotion/
 https://shallowu.github.io/categories/paper/
 https://shallowu.github.io/categories/deeplearning/
-https://shallowu.github.io/categories/deeplearnin/
