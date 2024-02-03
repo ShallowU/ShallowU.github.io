@@ -16,16 +16,16 @@
   <meta name="author" content="ShallowU">
   <meta name="keywords" content="">
   
-    <meta name="description" content="“Neural Network” is a very broad term; these are more accurately called“fully-connected networks” or sometimes “multi-layer perceptrons” (MLP)  函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度  Backpropagation反向传播是利用链式法">
+    <meta name="description" content="1.卷积神经网络（CNNs &#x2F; ConvNets）相比于拉长input，使用卷积层更有利于保留数据的空间性质。卷积神经网络的结构基于一个假设，即输入数据是图像，基于该假设，我们就向结构中添加了一些特有的性质。这些特有属性使得前向传播函数实现起来更高效，并且大幅度降低了网络中参数的数量。回顾：常规神经网络。在上一章中，神经网络的输入是一个向量，然后在一系列的隐层中对它做变换。每个隐层都是由">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lecture3-cs231n">
-<meta property="og:url" content="https://shallowu.github.io/2024/02a24ca667.html">
+<meta property="og:title" content="lecture4-cs231n">
+<meta property="og:url" content="https://shallowu.github.io/2024/02a889af7e.html">
 <meta property="og:site_name" content="ShallowU&#39;s Blog">
-<meta property="og:description" content="“Neural Network” is a very broad term; these are more accurately called“fully-connected networks” or sometimes “multi-layer perceptrons” (MLP)  函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度  Backpropagation反向传播是利用链式法">
+<meta property="og:description" content="1.卷积神经网络（CNNs &#x2F; ConvNets）相比于拉长input，使用卷积层更有利于保留数据的空间性质。卷积神经网络的结构基于一个假设，即输入数据是图像，基于该假设，我们就向结构中添加了一些特有的性质。这些特有属性使得前向传播函数实现起来更高效，并且大幅度降低了网络中参数的数量。回顾：常规神经网络。在上一章中，神经网络的输入是一个向量，然后在一系列的隐层中对它做变换。每个隐层都是由">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shallowu.github.io/img/cs231n/cs231n.png">
-<meta property="article:published_time" content="2024-02-03T02:46:57.000Z">
-<meta property="article:modified_time" content="2024-02-03T03:23:57.304Z">
+<meta property="article:published_time" content="2024-02-03T08:37:56.000Z">
+<meta property="article:modified_time" content="2024-02-03T12:52:37.113Z">
 <meta property="article:author" content="ShallowU">
 <meta property="article:tag" content="cs231n">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
   
   
   
-  <title>lecture3-cs231n - ShallowU&#39;s Blog</title>
+  <title>lecture4-cs231n - ShallowU&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -244,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="lecture3-cs231n"></span>
+            <span id="subtitle" data-typed-text="lecture4-cs231n"></span>
           
         </div>
 
@@ -255,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-03 10:46" pubdate>
-          2024年2月3日 上午
+        <time datetime="2024-02-03 16:37" pubdate>
+          2024年2月3日 下午
         </time>
       </span>
     
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          2.3k 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          10 分钟
+          20 分钟
         
       </span>
     
@@ -315,20 +315,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">lecture3-cs231n</h1>
+            <h1 id="seo-header">lecture4-cs231n</h1>
             
             
               <div class="markdown-body">
                 
-                <p>“Neural Network” is a very broad term; these are more accurately called<br>“fully-connected networks” or sometimes “multi-layer perceptrons” (MLP)<br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20105848.png" srcset="/img/loading.gif" lazyload alt="Alt text"></p>
-<blockquote>
-<p>函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度</p>
-</blockquote>
-<h1 id="Backpropagation"><a href="#Backpropagation" class="headerlink" title="Backpropagation"></a>Backpropagation</h1><p>反向传播是利用链式法则递归计算表达式的梯度的方法。理解反向传播过程及其精妙之处，对于理解、实现、设计和调试神经网络非常关键。<br>反向传播是一个优美的局部过程。在整个计算线路图中，每个门单元都会得到一些输入并立即计算两个东西：1. 这个门的输出值，和2.其输出值关于输入值的局部梯度。门单元完成这两件事是完全独立的，它不需要知道计算线路中的其他细节。然而，一旦前向传播完毕，在反向传播的过程中，门单元门将最终获得整个网络的最终输出值在自己的输出值上的梯度。链式法则指出，门单元应该将回传的梯度乘以它对其的输入的局部梯度，从而得到整个网络的输出对该门单元的每个输入值的梯度。</p>
-<h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><p>用于非线性数据经过层层激活函数可以变为线性<br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20105756.png" srcset="/img/loading.gif" lazyload alt="Alt text"></p>
-<h1 id="用向量化操作计算梯度"><a href="#用向量化操作计算梯度" class="headerlink" title="用向量化操作计算梯度"></a>用向量化操作计算梯度</h1><p><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20111444.png" srcset="/img/loading.gif" lazyload alt="Alt text"><br>上述内容考虑的都是单个变量情况，但是所有概念都适用于矩阵和向量操作。然而，在操作的时候要注意关注维度和转置操作。<br>矩阵相乘的梯度：可能最有技巧的操作是矩阵相乘（也适用于矩阵和向量，向量和向量相乘）的乘法操作<br>提示：要分析维度！ 注意不需要去记忆dW和dX的表达，因为它们很容易通过维度推导出来。例如，权重的梯度dW的尺寸肯定和权重矩阵W的尺寸是一样的，而这又是由X和dD的矩阵乘法决定的（在上面的例子中X和W都是数字不是矩阵）。总有一个方式是能够让维度之间能够对的上的。例如，X的尺寸是[10x3]，dD的尺寸是[5x3]，如果你想要dW和W的尺寸是[5x10]，那就要dD.dot(X.T)。</p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>对梯度的含义有了直观理解，知道了梯度是如何在网络中反向传播的，知道了它们是如何与网络的不同部分通信并控制其升高或者降低，并使得最终输出值更高的。<br>讨论了分段计算在反向传播的实现中的重要性。应该将函数分成不同的模块，这样计算局部梯度相对容易，然后基于链式法则将其“链”起来。重要的是，不需要把这些表达式写在纸上然后演算它的完整求导公式，因为实际上并不需要关于输入变量的梯度的数学公式。只需要将表达式分成不同的可以求导的模块（模块可以是矩阵向量的乘法操作，或者取最大值操作，或者加法操作等），然后在反向传播中一步一步地计算梯度。</p>
-<p>参考文章：<br><a target="_blank" rel="noopener" href="https://iphysresearch.github.io/blog/tag/cs231n/">https://iphysresearch.github.io/blog/tag/cs231n/</a></p>
+                <h1 id="1-卷积神经网络（CNNs-x2F-ConvNets）"><a href="#1-卷积神经网络（CNNs-x2F-ConvNets）" class="headerlink" title="1.卷积神经网络（CNNs &#x2F; ConvNets）"></a>1.卷积神经网络（CNNs &#x2F; ConvNets）</h1><p>相比于拉长input，使用卷积层更有利于保留数据的空间性质。<br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20192116.png" srcset="/img/loading.gif" lazyload alt="alt text"><br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20192102.png" srcset="/img/loading.gif" lazyload alt="alt text"><br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20192258.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>卷积神经网络的结构基于一个假设，即输入数据是图像，基于该假设，我们就向结构中添加了一些特有的性质。这些特有属性使得前向传播函数实现起来更高效，并且大幅度降低了网络中参数的数量。<br>回顾：常规神经网络。在上一章中，神经网络的输入是一个向量，然后在一系列的隐层中对它做变换。每个隐层都是由若干的神经元组成，每个神经元都与前一层中的所有神经元连接。但是在一个隐层中，神经元相互独立不进行任何连接。最后的全连接层被称为“输出层”，在分类问题中，它输出的值被看做是不同类别的评分值</p>
+<p>积神经网络主要由三种类型的层构成：卷积层，汇聚（Pooling）（downsampling）层和全连接层（全连接层和常规神经网络中的一样）。通过将这些层叠加起来，就可以构建一个完整的卷积神经网络。</p>
+<p>局部连接：在处理图像这样的高维度输入时，让每个神经元都与前一层中的所有神经元进行全连接是不现实的。相反，我们让每个神经元只与输入数据的一个局部区域连接。该连接的空间大小叫做神经元的感受野（receptive field），它的尺寸是一个超参数（其实就是滤波器的空间尺寸）。在深度方向上，这个连接的大小总是和输入量的深度相等。需要再次强调的是，我们对待空间维度（宽和高）与深度维度是不同的：连接在空间（宽高）上是局部的，但是在深度上总是和输入数据的深度一致。</p>
+<p>例1：假设输入数据体尺寸为[32x32x3]（比如CIFAR-10的RGB图像），如果（receptive field）感受野（或滤波器尺寸）是5x5，那么卷积层中的每个神经元会有输入数据体中[5x5x3]区域的权重，共5x5x3&#x3D;75个权重（还要加一个偏差参数）。注意这个连接在深度维度上的大小必须为3，和输入数据体的深度一致。</p>
+<p>例2：假设输入数据体的尺寸是[16x16x20]，感受野尺寸是3x3，那么卷积层中每个神经元和输入数据体就有3x3x20&#x3D;180个连接。再次提示：在空间上连接是局部的（3x3），但是在深度上是和输入数据体一致的（20）。</p>
+<p>上文讲解了卷积层中每个神经元与输入数据体之间的连接方式，但是尚未讨论输出数据体中神经元的数量，以及它们的排列方式。3个超参数控制着输出数据体的尺寸：深度（depth），步长（stride）和零填充（zero-padding）、activation map&#x3D;&#x3D;feature map、 kernal&#x3D;&#x3D;滤波器<br>首先，输出数据体的深度是一个超参数：它和使用的滤波器的数量一致，而每个滤波器在输入数据中寻找一些不同的东西。举例来说，如果第一个卷积层的输入是原始图像，那么在深度维度上的不同神经元将可能被不同方向的边界，或者是颜色斑点激活。我们将这些沿着深度方向排列、感受野相同的神经元集合称为深度列（depth column），也有人使用纤维（fibre）来称呼它们。<br>其次，在滑动滤波器的时候，必须指定步长。当步长为1，滤波器每次移动1个像素。当步长为2（或者不常用的3，或者更多，这些在实际中很少使用），滤波器滑动时每次移动2个像素。这个操作会让输出数据体在空间上变小。<br>在下文可以看到，有时候将输入数据体用0在边缘处进行填充是很方便的。这个 零填充（zero-padding）的尺寸是一个超参数。零填充有一个良好性质，即可以控制输出数据体的空间尺寸（最常用的是用来保持输入数据体在空间上的尺寸，这样输入和输出的宽高都相等）。</p>
+<p>一个简单的卷积神经网络是由各种层按照顺序排列组成，网络中的每个层使用一个可以微分的函数将激活数据从一个层传递到另一个层。卷积神经网络主要由三种类型的层构成：卷积层，汇聚（Pooling）层和全连接层（全连接层和常规神经网络中的一样）。通过将这些层叠加起来，就可以构建一个完整的卷积神经网络。</p>
+<p><em>网络结构例子：</em>这仅仅是个概述，下面会更详解的介绍细节。一个用于CIFAR-10图像数据分类的卷积神经网络的结构可以是[输入层-卷积层-ReLU层-汇聚层-全连接层]。细节如下：</p>
+<p>输入[32x32x3]存有图像的原始像素值，本例中图像宽高均为32，有3个颜色通道。<br>卷积层中，神经元与输入层中的一个局部区域相连，每个神经元都计算自己与输入层相连的小区域与自己权重的内积。卷积层会计算所有神经元的输出。如果我们使用12个滤波器（也叫作核），得到的输出数据体的维度就是[32x32x12]。<br>ReLU层将会逐个元素地进行激活函数操作，比如使用以0为阈值的<br>作为激活函数。该层对数据尺寸没有改变，还是[32x32x12]。<br>汇聚层在在空间维度（宽度和高度）上进行降采样（downsampling）操作，数据尺寸变为[16x16x12]。<br>全连接层将会计算分类评分，数据尺寸变为[1x1x10]，其中10个数字对应的就是CIFAR-10中10个类别的分类评分值。正如其名，全连接层与常规神经网络一样，其中每个神经元都与前一层中所有神经元相连接。<br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(456).png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20192937.png" srcset="/img/loading.gif" lazyload alt="使数据尺寸大小不变的zero-padding中p的取值"></p>
+<h1 id="计算实例"><a href="#计算实例" class="headerlink" title="计算实例"></a>计算实例</h1><p><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20193046.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20193116.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>最近小尺寸kernal滤波器如1<em>1、2</em>2，也是十分常见和重要<br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(457).png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<h1 id="conv特点"><a href="#conv特点" class="headerlink" title="conv特点"></a>conv特点</h1><p>·局部感受野<br>·权值共享<br>·下采样、池化<br>池化一般有max、或者average两种操作</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20202746.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>参考链接：<br><a target="_blank" rel="noopener" href="https://iphysresearch.github.io/blog/post/dl_notes/cs231n/cs231n_convnet_notes/#25-%E6%8A%8A%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E8%BD%AC%E5%8C%96%E6%88%90%E5%8D%B7%E7%A7%AF%E5%B1%82">https://iphysresearch.github.io/blog/post/dl_notes/cs231n/cs231n_convnet_notes/#25-%E6%8A%8A%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E8%BD%AC%E5%8C%96%E6%88%90%E5%8D%B7%E7%A7%AF%E5%B1%82</a></p>
 
                 
               </div>
@@ -347,7 +354,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/deeplearning/" class="category-chain-item">deeplearning</a>
+  <a href="/categories/deeplearnin/" class="category-chain-item">deeplearnin</a>
   
   
 
@@ -374,8 +381,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>lecture3-cs231n</div>
-      <div>https://shallowu.github.io/2024/02a24ca667.html</div>
+      <div>lecture4-cs231n</div>
+      <div>https://shallowu.github.io/2024/02a889af7e.html</div>
     </div>
     <div class="license-meta">
       
@@ -419,18 +426,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02a889af7e.html" title="lecture4-cs231n">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">lecture4-cs231n</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/016631f8d2.html" title="01Communication-Efficient_Learning_of_Deep_Networks_from_Decentralized_Data">
-                        <span class="hidden-mobile">01Communication-Efficient_Learning_of_Deep_Networks_from_Decentralized_Data</span>
+                      <a href="/2024/02a24ca667.html" title="lecture3-cs231n">
+                        <span class="hidden-mobile">lecture3-cs231n</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

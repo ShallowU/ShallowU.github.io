@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shallowu.github.io/2024/02a889af7e.html</loc>
+    
+    <lastmod>2024-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shallowu.github.io/2024/02a24ca667.html</loc>
     
     <lastmod>2024-02-03</lastmod>
@@ -119,14 +128,14 @@
 
   
   <url>
-    <loc>https://shallowu.github.io/tags/federal-learning/</loc>
+    <loc>https://shallowu.github.io/tags/lyrics/</loc>
     <lastmod>2024-02-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://shallowu.github.io/tags/lyrics/</loc>
+    <loc>https://shallowu.github.io/tags/federal-learning/</loc>
     <lastmod>2024-02-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -149,13 +158,6 @@
 
   
   <url>
-    <loc>https://shallowu.github.io/categories/paper/</loc>
-    <lastmod>2024-02-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://shallowu.github.io/categories/share-emotion/</loc>
     <lastmod>2024-02-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -163,7 +165,21 @@
   </url>
   
   <url>
+    <loc>https://shallowu.github.io/categories/paper/</loc>
+    <lastmod>2024-02-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://shallowu.github.io/categories/deeplearning/</loc>
+    <lastmod>2024-02-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shallowu.github.io/categories/deeplearnin/</loc>
     <lastmod>2024-02-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
