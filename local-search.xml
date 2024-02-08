@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>regular_expression</title>
+    <link href="/2024/02b04f8ff0.html"/>
+    <url>/2024/02b04f8ff0.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="正则化表达式语法"><a href="#正则化表达式语法" class="headerlink" title="正则化表达式语法"></a>正则化表达式语法</h1><p>一个很好的翻译中文文档：<a href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md">https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md</a><br>微软英文文档：<a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference</a><br>视频介绍：<a href="https://www.bilibili.com/video/BV1da4y1p7iZ/?spm_id_from=333.999.0.0&vd_source=85bcb210f9ab301f1c934a59eeb6b03e">https://www.bilibili.com/video/BV1da4y1p7iZ/?spm_id_from=333.999.0.0&amp;vd_source=85bcb210f9ab301f1c934a59eeb6b03e</a><br>好用的在线测试：<a href="https://regex101.com/">https://regex101.com/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>skills</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>useful</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>lecture4-cs231n</title>
     <link href="/2024/02a889af7e.html"/>
     <url>/2024/02a889af7e.html</url>
