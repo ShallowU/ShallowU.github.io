@@ -16,12 +16,12 @@
   <meta name="author" content="ShallowU">
   <meta name="keywords" content="">
   
-    <meta name="description" content="“Neural Network” is a very broad term; these are more accurately called“fully-connected networks” or sometimes “multi-layer perceptrons” (MLP)  函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度  Backpropagation反向传播是利用链式法">
+    <meta name="description" content="有密码才能看！(当然你是大佬那当我没说)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lecture3-cs231n">
 <meta property="og:url" content="https://shallowu.github.io/2024/02a24ca667.html">
 <meta property="og:site_name" content="ShallowU&#39;s Blog">
-<meta property="og:description" content="“Neural Network” is a very broad term; these are more accurately called“fully-connected networks” or sometimes “multi-layer perceptrons” (MLP)  函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度  Backpropagation反向传播是利用链式法">
+<meta property="og:description" content="有密码才能看！(当然你是大佬那当我没说)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shallowu.github.io/img/cs231n/cs231n.png">
 <meta property="article:published_time" content="2024-02-03T02:46:57.000Z">
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          7.6k 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          10 分钟
+          64 分钟
         
       </span>
     
@@ -318,20 +318,22 @@
             <h1 id="seo-header">lecture3-cs231n</h1>
             
             
-              <div class="markdown-body">
-                
-                <p>“Neural Network” is a very broad term; these are more accurately called<br>“fully-connected networks” or sometimes “multi-layer perceptrons” (MLP)<br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20105848.png" srcset="/img/loading.gif" lazyload alt="Alt text"></p>
-<blockquote>
-<p>函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度</p>
-</blockquote>
-<h1 id="Backpropagation"><a href="#Backpropagation" class="headerlink" title="Backpropagation"></a>Backpropagation</h1><p>反向传播是利用链式法则递归计算表达式的梯度的方法。理解反向传播过程及其精妙之处，对于理解、实现、设计和调试神经网络非常关键。<br>反向传播是一个优美的局部过程。在整个计算线路图中，每个门单元都会得到一些输入并立即计算两个东西：1. 这个门的输出值，和2.其输出值关于输入值的局部梯度。门单元完成这两件事是完全独立的，它不需要知道计算线路中的其他细节。然而，一旦前向传播完毕，在反向传播的过程中，门单元门将最终获得整个网络的最终输出值在自己的输出值上的梯度。链式法则指出，门单元应该将回传的梯度乘以它对其的输入的局部梯度，从而得到整个网络的输出对该门单元的每个输入值的梯度。</p>
-<h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><p>用于非线性数据经过层层激活函数可以变为线性<br><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20105756.png" srcset="/img/loading.gif" lazyload alt="Alt text"></p>
-<h1 id="用向量化操作计算梯度"><a href="#用向量化操作计算梯度" class="headerlink" title="用向量化操作计算梯度"></a>用向量化操作计算梯度</h1><p><img src="/img/cs231n/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-03%20111444.png" srcset="/img/loading.gif" lazyload alt="Alt text"><br>上述内容考虑的都是单个变量情况，但是所有概念都适用于矩阵和向量操作。然而，在操作的时候要注意关注维度和转置操作。<br>矩阵相乘的梯度：可能最有技巧的操作是矩阵相乘（也适用于矩阵和向量，向量和向量相乘）的乘法操作<br>提示：要分析维度！ 注意不需要去记忆dW和dX的表达，因为它们很容易通过维度推导出来。例如，权重的梯度dW的尺寸肯定和权重矩阵W的尺寸是一样的，而这又是由X和dD的矩阵乘法决定的（在上面的例子中X和W都是数字不是矩阵）。总有一个方式是能够让维度之间能够对的上的。例如，X的尺寸是[10x3]，dD的尺寸是[5x3]，如果你想要dW和W的尺寸是[5x10]，那就要dD.dot(X.T)。</p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>对梯度的含义有了直观理解，知道了梯度是如何在网络中反向传播的，知道了它们是如何与网络的不同部分通信并控制其升高或者降低，并使得最终输出值更高的。<br>讨论了分段计算在反向传播的实现中的重要性。应该将函数分成不同的模块，这样计算局部梯度相对容易，然后基于链式法则将其“链”起来。重要的是，不需要把这些表达式写在纸上然后演算它的完整求导公式，因为实际上并不需要关于输入变量的梯度的数学公式。只需要将表达式分成不同的可以求导的模块（模块可以是矩阵向量的乘法操作，或者取最大值操作，或者加法操作等），然后在反向传播中一步一步地计算梯度。</p>
-<p>参考文章：<br><a target="_blank" rel="noopener" href="https://iphysresearch.github.io/blog/tag/cs231n/">https://iphysresearch.github.io/blog/tag/cs231n/</a></p>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="wrong password!!!(No Peeking!)" data-whm="verification error!">
+  <script id="hbeData" type="hbeData" data-hmacdigest="de41a9de42c28d74eaa4dfde911b76c678eec9104ebf420a8c3b478aa554d237">597d8633d65baab192f17e2fbecadce3979eee8da8de26358b3da73901b601339fe82a99c788642df7649a90cf28d814787dd559f65db1d10bab591972028a99c7de9cebd390e8213e7be54c2123b3e748cd1237c5724e3fe6545e7bd4553f669653790deeddfbfb3dcf29dc4c618405ca1e1aafb5536ea1e94ff3ae40ac398ccca18d7ab67941df2ea717f878c199a89b8faa9af6c2e02e437be4d14db2be8ba181142395cb79799fe8673871f46a6368408d410d1c7e3eb3dae388f495e5149692dd4bc88d9820925157323de5f79253c914e4a43728767466857ad2e4ca6db9177483d6f9702501cf564f7f1cafe99be815f39bf8a5de6a70785f9c51fb4fa1e3f5ee6b57e199abfa1cb9608552096ce0f90bf5b9e0e47d61ff607fd27e53b6bbcf131425231176d598c826b54508c202bea8811f88caf6618376d40111df939b55ede6bf8134959fbb9a058ff574ab7b889033d6a8164a51883f5ab14a69ea01539360046124fdcbdb453680dd3fa4170ad35da4162ee278b2cd2f1786bc889f1353f29f320fe1e9193cc1d9bc1c1031b061e48b2bb5f81aff0be370b9dfbf1a42b2146aebd075063f7fbf4776a9fbe44d94663b450fffcb5dc2b563b41f14f0abc2af3d421cd7177165124bbbdafb25a22cc03402c29e121228b30374fa61d3085fca3b655dd921bdaa0404f09697209ad18bddc21d9fb57ca7e4500aa3507dd069088fbaa1f1df4f56de0264151e1556c2485f699c5c77e57ba403a0ee4aecaabfcccea58a74f73c33c7584b4c788c67db7857c37d2ced59b49b48270f6792f01605069d433e3931e97ad4bbb0389465d6d85f1375c3d5656c18a52dbc3acd04a0e59d068209def09e15dcb5b3606bbe9aafc55e9be6b30cca6e4df723d55aef3d52d8a3d92962f862b37613c9fb11266eafd36a25101bc24fbc9214a1c52e583d767e34bd8d140e470b20078af6f50083135de4fb14d3d60572ebade3c2279ce86a75018904f187ccf1810d80d921b009bfe9f6e5890d8f1f817385225085424a179ac5183130bf46cf1d81de2c345b2823878f3b27da8583ce783cc86df5687e69ea563dcb74710ff0303d82446e3edf0d47f1b3ef3ae309453fc1e7925d04dff2830acc3e709c18cd1b1e946bfdc6e2e948f6f821e8369e3e15a3688442f7529cc11f84318c22978cda04bb4b5ed05667d531e96ba9dd343500bd7300a3577decd5e7541aaa2f96fc4f8b8d1abb27c5b7b4464335cee33915654115932f97374e04e84f93ada32aa85a200bb58b8a237de0935cbae87cc4adb3f40da107c8a5fa316c5ec5204841be0e5fa3e57f1564a644dd22e3a01247f750cb197fc42ac6e465dfdb8557c37d9f5acf0ec1fb3f4aa70504d0d83be6db76cab4608e43ac9cbfc9877b6224953e08ae299b07e3531edc8e7eb04f2622e484bfe42535a4cbff481a35973273a54c65884787bdb0809afd80d84c085077a492a62304d84b6631d7983f7c2353a82ffd10c692f524402cadaf00566ede9361887927f3e8dda237ea4bc8a911a0b6cc8830ee6fad3c2732c436ee2808f020b3f1c87549efaf1911acdab041fb60447b96786f6ff5e3fa1d4cae09c7c306e1eadb2f7698f566858165c2c869896381b775271d8dfbc2552fd6dd121e257370c813cdc276ee5fa5eda163e45085fd05a2bf5d875a77057a36bd363955e69f071f43b5bfbb511e555e0b9369c7ba946b5f2336bbf0285615b9f74332655c2a49c47998f1b913ddc1ea7f4a3b057180d1be1a7c149972e585ad7a0a5975c5fe0fb21cdb0b82ebb260c81d16839d76037a1bab007fab7febdf29317a7411441144d6be161e75621b49bb948f5d02ff07e068e84efa896310b250bb647af5549d9d9c734c30cd852543d512d061b1cb52918cffee2f431b230f9ac68e8b8e3c52af9f53868024d95ad363d365b66ff641dbd85a28838b8c83be598e098af825ed0c1331cd8529ba3144110b53e00f8da78ffdf77cb1d8e51618ce8c2a39d175d338d745b681266e497a94c4e1ce2e30f9bc321dfc566a0e5f23a28b52729c2ca1f4d68ea6df3053698ce3859f6ad3f73b317143684f560c69b2caca28f94cda29a3551766b29173796e1e8a8c2e9cd7dc42b0ffc7980ea2725a667389082d072a0ad75598ee938a9fae340feb49033a9eedd7b97acb4c725a02e60111af8e292492421380e9b1bc67e24bde616dfccd039549197d6194b362206220865b79cfad885534c9691c7905ebb8bdc545d4e9f6e6b2f5e8b23dae357545ed583c1eb4bf3397bf2ed15fd79543bc610e7883a91c3cb0e7222469a6eccd480050bda9bf5b9b6496119343baa41d1a384c0a8293ae9799ef264ddd6c60ed89c502237213adaab8b411e031166544c904795e200f1fdaf138222ef83029399425e2f4bc80a56508446d78ca728d6f147a263b6884ca6f561633327305ab8ef1cf0669d889b8c40b639c86a85cd1e51b79b9aaea06908e2e0ad0e666b59ebaa97b23ee03b3058bff326cbecef4db2ce2ca981c441747d4b0bffca2303a54ea294bfbd0c1b67787e153ea8d0d84f4f3db640da055109987973f8457e1a6c8507e85bc0c544e3e9325b53d6759ee320d238def09280702d082abccc48c586058a02e0a5c788f24a3e9be9d2f6df37985573cad99bb901620ed50fbdffe2f74faa03fb031fd0f189b64d633f71a4c73f5c0bc20d4ea5d47e2adfb4b5180b575c7ac52112f2d982839a6e33a3d28598e2c129c5c2a1b19e8da50733e04d93cfeb61a3ee58c6afc891d51560262c64560b3f1bb51bfb6e82ecc7339deca00caa75b54509ea8a5122298b49c53f9322286cf6cf76bcc50b04ddc2654cb2c7b65d06418fa16ebefe31f88be87b6557afb14abaa4da2afc0d30944cecd28860cfb1f232e339a31c6b95d26dd36b0b3c7c253264cb5c04cbe5779802d76a7d0bcc2baf2717cc93e62036ef09c12ea07a8be1ea9c218c8e224e9569399118d9d8d5c1f6e73ae75ecb562291fa89da59255379c882561beb69d0f759734f8d5e01aa1b74f28d03e17886edcb418eee3faaa03565cf5e42b838527fefbaf8701d5a8c2362b32cfd1b5cdef588febd20e19b5707e5196f68be55964ece8f4ede9def62a4f3c0858cb8852a4319e089eedd6d3db2bc00473c55776420e6d54b97577c717570a5cf7045b79a34bd86bbe9abc8d0c640be93edefaabeaf33b402294d9edc11f87387eebb8ea3766386cdfa394be480fd008e07a87cfeb45e863dad1697338931ef8c92614e4f78d26d7caf23d3bd0405ff67d284707af755fa078bbbef1f667ad4bfad5b47a3322718d339d86c6377ecb17904b6c0298d3c0683b9acee509afbf5e8518ba052847eb77254aceefb9f97e1f89ac87e6e992fee2f77c3a218c7f3e6fff1bc98951eb391e668f7496e9824a435ac4680be1fb1e22801e87812ba99b0ae330c5b1357c50a0025a5896eb30e327840440a4ec78e88b5c3a5601a1a720c95534046c7b080192bd40d5ed072edc4d26a157e5e95eb7f804258790c914527876ac097a9e2ee49e3d5615667ca3460a28ac17609be92f2664bb1bffdcfdd918cb5a73338b81ca5c10cb7bb4e03a9e77892353f2d5bd95c870bf472450205b6e2d8cf6f4709e5630e65fbcee77fa8426ef7350193264bfb6223aeb889dad78bfb31c3ef8f3c2d0581b543c07db29f27c502afbc8daffd433013a5c00dcf9d2abd6b938be2ca79e9ed2bf735d988f2249a2a153adbccc31d9b3f187fea0fa0723a26dc0230aac6096f53c5de3ec1a809d503d30a5a7876d914e96f6fdf66e7d99bdb5476e5eb863eb8d77a32444af6fb15aec081fb2e1ae51d70510a77b4494f2973d2a178e6a464bfb55d35efe15c07ccfa1ec2df6dd2dd75dd2e5d403fc09f98f9240ca94754e694226e2ce185694469c17008eeac89bbb526d0377fb4a299e12f97cdd1644242b04cf84cdd8775cdb1122a74deec777fd489a044645b29d05500415d3ee1f3b0208919d236ea84295d7978dcc30c51544b2f122ecf15d2e7c4ee876736c3b305d41c83d619df3b362d1cde491c7d8008c6f4e442a4b887fa1437e73a2ff0f8b5277c149a548c5507cbc64b09ec07d9bf42f1e375bab6bac0417fc474d383b51534cc3503e10f86004b0ed87cf3d3fa977881313221ec6c4d9b851159bf44b4e907c828c1a9280ac3c3ddf706bad4c7844709666eccd1a869aebc2678f3a81a66009dcd9f36134dd7272e70792118e93550396310d6747010f8ea57bf19a1b0c19e207e04bb5080b8b414893cbba6caa632358262986377a37faad29f02c95ea74f14f874609ef3a7ddb5dabf250adfca0f00afccb10ec6bfb7c0f79f2187c7bedd7750994aed18b4f75736fd86211533bef6721b35865821de51cb19d736f3b9ffe13e008e0f6311896bc5152aab6ac615846f87834a5a6beb679585d22d79ee14f67a2b67b565d9cee028989a905dba2a54cb52d9756c5cc55a91eead460fab94e278afc205f7eae1ece78da86d96817b0ea0235b3985e824cf5df7e6f618c011d70b6fc2160104e249d0145fa6696bba21c4c1ac28c6f0a2eb2c2571cced2bfa585cb8716cc632451ce53aae7fe519751072af3ab11c7601bebe120856c76a6ab61160e096e5c3eede019c75241c0ce073f069bb08172fed8c1a6dd8800d5152c7a8d49d320d79e16511d2c80b0db6d45543ec888ef6b15a70d181a0b94cef207519c176e660d2e0baa7310d0bb37446dd4895251315bdda4fa3a330b06b127bb0eb84ea8a714409a39103b37b2ed131fb4e4cf1c9b1c0fc94941cde6c0b16dcb4010f2081a31adf631e3ddb9b7fe94f859e920b2c3c9a674470b9c3f8af6ace55aa092a8dbffdfd89af06b2611cb040389425728e95c41b5579954adf1afc1972a7fb2f20b641a89128634e8a9c3db8651cb1a707b816b28b1d4364eb14d97cfe1fe1ffc20ee36c8026af86ffb7bfe6fd4525ce91898cc44e40d770075a499370e083964d3fd105adbb23ded6cd3e4ebb740aee1ad58ad3966e232043aadc115b8ac1e683473abec98bfa79a7f529b896fa951cce2bb2e8023f4126b65d6079452eff688675b19cdeae19854c661f91e8b7873816c5e28f111eae28cca087d53318e5722f60d8680062b3eca40701d4c4afc01c881fd7504b30f332d7e97c07cf6daac15d57e1aa21b044560d395d64679802bb95bf1962bce2d030a2f4ee86bff72701c8e6414ddcd8f134f87c241f514b96623e5aa48d399a9517a4abd074bef9446608f97e1f9207e68349c6ae3a52d0a3121e98b8ae26e01e7d842970ab7fe7700157483267452719b2cd5989285af863b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">please enter the passeword!</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -642,6 +644,23 @@
   
 
 
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   
