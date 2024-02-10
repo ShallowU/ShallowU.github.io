@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://shallowu.github.io/2024/02d87f7e0c.html</loc>
+    <loc>https://shallowu.github.io/2024/02eb68570b.html</loc>
     
     <lastmod>2024-02-10</lastmod>
     
@@ -153,13 +153,6 @@
   </url>
   
   <url>
-    <loc>https://shallowu.github.io/tags/cs231n/</loc>
-    <lastmod>2024-02-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://shallowu.github.io/tags/federal-learning/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -167,7 +160,21 @@
   </url>
   
   <url>
+    <loc>https://shallowu.github.io/tags/cs231n/</loc>
+    <lastmod>2024-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://shallowu.github.io/tags/useful/</loc>
+    <lastmod>2024-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shallowu.github.io/tags/emotion/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -190,13 +197,6 @@
   </url>
   
   <url>
-    <loc>https://shallowu.github.io/categories/deeplearning/</loc>
-    <lastmod>2024-02-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://shallowu.github.io/categories/paper/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -204,7 +204,21 @@
   </url>
   
   <url>
+    <loc>https://shallowu.github.io/categories/deeplearning/</loc>
+    <lastmod>2024-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://shallowu.github.io/categories/skills/</loc>
+    <lastmod>2024-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shallowu.github.io/categories/thinking/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
