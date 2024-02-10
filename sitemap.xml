@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shallowu.github.io/google6b19628df6dbd1bc.html</loc>
+    
+    <lastmod>2024-02-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shallowu.github.io/2024/02eb68570b.html</loc>
     
     <lastmod>2024-02-10</lastmod>
@@ -158,14 +167,14 @@
   </url>
   
   <url>
-    <loc>https://shallowu.github.io/tags/useful/</loc>
+    <loc>https://shallowu.github.io/tags/emotion/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://shallowu.github.io/tags/emotion/</loc>
+    <loc>https://shallowu.github.io/tags/useful/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -202,14 +211,14 @@
   </url>
   
   <url>
-    <loc>https://shallowu.github.io/categories/skills/</loc>
+    <loc>https://shallowu.github.io/categories/thinking/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://shallowu.github.io/categories/thinking/</loc>
+    <loc>https://shallowu.github.io/categories/skills/</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
